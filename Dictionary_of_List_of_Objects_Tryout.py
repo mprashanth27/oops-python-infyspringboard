@@ -28,14 +28,15 @@ for key in dict_of_customer:
     for customer in list_of_customers:
         if (key==customer.location):
             if(dict_of_customer[key]==None):
-                dict_of_customer[key]=customer
+                dict_of_customer[key]=[customer]
             else:
-                dict_of_customer[key]= dict_of_customer[key]+","+customer
+                dict_of_customer[key].append(customer)
                 
 ''' I want to add all customer objs as values based on their location; able to add atributes like name,... but not the entire obj.
 ERRO - Traceback (most recent call last):
   File "F:\Prashanth disk(f)\VS Code projects\Python\OOPS-Python\Dictionary_of_List_of_Objects_Tryout.py", line 33, in <module>
     dict_of_customer[key]=dict_of_customer[key]+","+customer
-TypeError: unsupported operand type(s) for +: 'Customer' and 'str' '''
+TypeError: unsupported operand type(s) for +: 'Customer' and 'str' 
+SOLVED IT BY ADDING CUSTOMERS FROM SAME LOCATION INTO A LIST AND PASSING THAT AS THE VALUE TO THE RESPECTIVE KEY(LOCATION)'''
 
 print(dict_of_customer)
