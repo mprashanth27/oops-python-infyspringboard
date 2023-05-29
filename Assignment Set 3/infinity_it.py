@@ -1,7 +1,7 @@
 #lex_auth_012751878508396544244 [Assignment on Static - Level 2]
 
 class Applicant:
-    __application_dict={"A":4,"B":0,"C":0}
+    __application_dict={'A':0,'B':0,'C':0}
     __applicant_id_count=1000
     def __init__(self,applicant_name):
         self.__applicant_id=0
@@ -26,7 +26,7 @@ class Applicant:
         self.__applicant_id=Applicant.__applicant_id_count
         
     def apply_for_job(self,job_band):
-        if Applicant.__application_dict[job_band]==5:
+        if Applicant.__application_dict[job_band]>=5:
             print("applied job band has reached the maximum limit!")
             return -1
         else:
