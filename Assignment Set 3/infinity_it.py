@@ -26,19 +26,25 @@ class Applicant:
         self.__applicant_id=Applicant.__applicant_id_count
         
     def apply_for_job(self,job_band):
-        if Applicant.__application_dict[job_band]>=5:
-            print("applied job band has reached the maximum limit!")
-            return -1
+        if str(job_band).isalpha() and job_band!=None: #Added this Error check to satisfy test cases but no luck; remove this later if not required
+            if Applicant.__application_dict[job_band]>=5:
+                print("applied job band has reached the maximum limit!")
+                return -1
+            else:
+                Applicant.__application_dict[job_band]+=1
+                self.generate_applicant_id()
+                self.__job_band=job_band
+                print(f"applicant_id:{self.__applicant_id}\napplicant_name:{self.__applicant_name}\njob band:{self.__job_band}")
         else:
-            Applicant.__application_dict[job_band]+=1
-            self.generate_applicant_id()
-            self.__job_band=job_band
-            print(f"applicant_id:{self.__applicant_id}\napplicant_name:{self.__applicant_name}\njob band:{self.__job_band}")
+            return -1
             
+a=Applicant("Jack")
 a1=Applicant("John1")
 a2=Applicant("John2")
 a3=Applicant("John3")
 
+a.apply_for_job("A")
 a1.apply_for_job("A")
+#a1.apply_for_job(A) #why is this wrong getting NameError: name 'A' is not defined
 a2.apply_for_job("A")
 a3.apply_for_job("B")
