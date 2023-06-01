@@ -33,18 +33,18 @@ class Multiplex:
     def  generate_seat_number(self,movie_index, number_of_tickets):
         '''Write the logic to generate and return the list of seat numbers'''
         seat_numbers_list=[]
-        if(movie_index==0):
+        if Multiplex.__list_last_seat_number[movie_index]==None:
             for i in range(1,number_of_tickets+1):
-                seat_number="M1-"+str(i)
+                seat_number="M"+str(movie_index+1)+"-"+str(i)
                 seat_numbers_list.append(seat_number)
-                Multiplex.__list_total_tickets[0]-=1
-            Multiplex.__list_last_seat_number[0]=seat_number
-        elif(movie_index==1):
-            for i in range(1,number_of_tickets+1):
-                seat_number="M2-"+str(i)
+                Multiplex.__list_total_tickets[movie_index]-=1
+                Multiplex.__list_last_seat_number[movie_index]=seat_number
+        else:
+            for i in range(int(Multiplex.__list_last_seat_number[movie_index][3:])+1,int(Multiplex.__list_last_seat_number[movie_index][3:])+number_of_tickets+1):
+                seat_number="M"+str(movie_index+1)+"-"+str(i)
                 seat_numbers_list.append(seat_number)
-                Multiplex.__list_total_tickets[1]-=1
-            Multiplex.__list_last_seat_number[1]=seat_number
+                Multiplex.__list_total_tickets[movie_index]-=1
+                Multiplex.__list_last_seat_number[movie_index]=seat_number
         return seat_numbers_list
                 
 booking1=Multiplex()
