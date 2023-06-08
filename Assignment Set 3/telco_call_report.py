@@ -30,9 +30,9 @@ class Util:
             
     def display(self):
         for i in self.list_of_customer_calldetail_objects:
-            print("***",i.__dict__,"***") #Will display the value of customer obj's in stored self.list_of_customer_calldetail_objects attribute
+            print("***",i.__dict__,"***") #Will display the value of customer obj's stored in self.list_of_customer_calldetail_objects attribute
             for j in i.list_of_calls:
-                print(j.__dict__) #Will display the value of calldetail_objects obj's in stored list_of_calls attribute of the customer         
+                print(j.__dict__) #Will display the value of calldetail_objects obj's stored in list_of_calls attribute of the customer         
                     
 
 cust1=Customer(9900009901,'cust1',23)
