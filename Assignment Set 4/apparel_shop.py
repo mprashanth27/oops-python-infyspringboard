@@ -3,8 +3,8 @@
 class Apparel:
     counter=100
     def __init__(self,price,item_type):
-        self.__item_id=0 #Needed??
-        self.__price=price
+        self.__item_id=None
+        self.__price=float(price)
         self.__item_type=item_type
         
         if self.__item_type=="Cotton":
@@ -23,8 +23,8 @@ class Apparel:
     def get_item_type(self):
         return self.__item_type
 
-    def set_price(self, value):
-        self.__price = value
+    def set_price(self, price):
+        self.__price = price
 
     def calculate_price(self):
         self.__price*=1.05
@@ -32,12 +32,16 @@ class Apparel:
 class Cotton(Apparel):
     def __init__(self,price,discount):
         super().__init__(price, "Cotton")
-        self.__discount=discount
-        
+        self.__discount=float(discount)
+    
+    def get_discount(self):
+        return self.__discount
+    
     def calculate_price(self):
         super().calculate_price()
-        self.__price-=self.__discount/100*self.__price
-        self.__price*=1.05
+        price=self.get_price()
+        Final_price=1.05*(price)*(1-self.__discount/100) #discount & 5% VAT on final price
+        self.set_price(Final_price)
     
 class Silk(Apparel):
     def __init__(self,price):
@@ -50,11 +54,20 @@ class Silk(Apparel):
     def calculate_price(self):
         super().calculate_price()
         
-        if self.__price<=10000:
+        if 0<=self.get_price()<=10000:
             self.__points+=3
-        elif self.__points>10000:
+        elif self.get_price()>10000:
             self.__points+=10
         
-        self.__price*=1.1
+        self.set_price(1.1*self.get_price()) #10% VAT on price
+        
+c1=Cotton(500,10)
+s1=Silk(1000)
+
+c1.calculate_price()
+s1.calculate_price()
+
+print(f"Cotton Apparel:\ndiscount={c1.get_discount()}\nFinal price={c1.get_price()}")
+print(f"Silk Apparel:\npoints={s1.get_points()}\nFinal price={s1.get_price()}")
             
         
