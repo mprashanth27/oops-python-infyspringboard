@@ -2,7 +2,7 @@
 
 class FruitInfo:
     __fruit_name_list=["Apple","Guava","Orange","Grape","Sweet Lime"] #list of fruits available
-    __fruit_price_list=[200,80,70,110,60] #price/kg of fruits
+    __fruit_price_list=[100, 800, 70, 110, 600] #price/kg of fruits
 
     @staticmethod
     def get_fruit_name_list():
@@ -58,15 +58,15 @@ class Purchase:
             elif fruit_price==min(FruitInfo.get_fruit_price_list()) and self.__quantity>=5:
                 final_price*=0.95
             
-            if self.__customer.get_cust_type=="wholesale":
+            if self.__customer.get_cust_type()=="wholesale":
                 final_price*=0.9
             
             self.__purchase_id="P"+str(Purchase.__counter)
             Purchase.__counter+=1
             return final_price
 
-c1=Customer("John","wholesale")
-p1=Purchase(c1,"Apple",2)
+c1=Customer("Tom","wholesale")
+p1=Purchase(c1,"Guava",1)
 print(p1.calculate_price())
         
         
